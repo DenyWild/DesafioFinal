@@ -1,5 +1,6 @@
 package com.desafioFinal.DesafioFinal.services;
 
+import com.desafioFinal.DesafioFinal.dtos.TagsProfessorRequest;
 import com.desafioFinal.DesafioFinal.dtos.TagsRequest;
 import com.desafioFinal.DesafioFinal.dtos.TagsResponse;
 import com.desafioFinal.DesafioFinal.exceptions.ResourceNotFoundException;
@@ -40,7 +41,10 @@ public class TagsService {
 
     }
 
-    public TagsResponse vincularTagAoProfessor(Long id_professor, Long id_tag) {
+    public TagsResponse vincularTagAoProfessor(TagsProfessorRequest request) {
+
+        Long id_tag = request.getId_tag();
+        Long id_professor = request.getId_professor();
 
         Tags tag = tagsRepository.findById(id_tag).orElseThrow(() -> idNotFound(id_tag));
         Professor prof = professorRepository.findById(id_professor).orElseThrow(() -> idNotFound(id_professor));

@@ -1,5 +1,6 @@
 package com.desafioFinal.DesafioFinal.controllers;
 
+import com.desafioFinal.DesafioFinal.dtos.MarcacaoProfessorRequest;
 import com.desafioFinal.DesafioFinal.dtos.MarcacaoRequest;
 import com.desafioFinal.DesafioFinal.dtos.MarcacaoResponse;
 import com.desafioFinal.DesafioFinal.services.MarcacaoService;
@@ -7,11 +8,9 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import static org.springframework.http.HttpStatus.CREATED;
-import static org.springframework.http.HttpStatus.FOUND;
 
 @RestController
 @RequestMapping("/marcacao")
@@ -24,7 +23,7 @@ public class MarcacaoController {
     public ResponseEntity<MarcacaoResponse> criarMarcacao(@RequestBody @Valid MarcacaoRequest request) {
 
         MarcacaoResponse response = marcacaoService.criarMarcacao(request);
-        return ResponseEntity.status(CREATED).body(response);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
 
     }
 
@@ -36,11 +35,18 @@ public class MarcacaoController {
 
     }
 
+    @PostMapping("/vincular")
+    public ResponseEntity<MarcacaoResponse> vincularMarcacaoAoProfessor(@RequestBody MarcacaoProfessorRequest request) {
+
+        MarcacaoResponse response = marcacaoService.vincularMarcacaoAoProfessor(request);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    }
+
     @GetMapping(path = "/{id}")
     public ResponseEntity<MarcacaoResponse> buscarMarcacaoPorId(@PathVariable Long id) {
 
         MarcacaoResponse response = marcacaoService.buscarMarcacaoPorId(id);
-        return ResponseEntity.status(FOUND).body(response);
+        return ResponseEntity.status(HttpStatus.FOUND).body(response);
 
     }
 

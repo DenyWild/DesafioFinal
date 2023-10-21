@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Aluno extends Usuario{
+public class Aluno extends Usuario {
 
     private String dificuldade;
 

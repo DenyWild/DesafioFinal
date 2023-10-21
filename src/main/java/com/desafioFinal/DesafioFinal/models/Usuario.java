@@ -1,10 +1,15 @@
 package com.desafioFinal.DesafioFinal.models;
 
 import com.desafioFinal.DesafioFinal.models.enums.Role;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@MappedSuperclass
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Usuario {
 
     @Id
