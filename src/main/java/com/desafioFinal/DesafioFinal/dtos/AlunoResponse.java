@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class AlunoResponse {
 
+    private Long id;
     private String nome;
     private String email;
     private String dificuldade;
