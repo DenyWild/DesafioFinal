@@ -1,20 +1,13 @@
 package com.desafioFinal.DesafioFinal.services;
 
-import com.desafioFinal.DesafioFinal.dtos.AlunoRequest;
-import com.desafioFinal.DesafioFinal.dtos.AlunoResponse;
 import com.desafioFinal.DesafioFinal.dtos.ProfessorRequest;
 import com.desafioFinal.DesafioFinal.dtos.ProfessorResponse;
 import com.desafioFinal.DesafioFinal.exceptions.ResourceNotFoundException;
-import com.desafioFinal.DesafioFinal.models.Aluno;
 import com.desafioFinal.DesafioFinal.models.Professor;
-import com.desafioFinal.DesafioFinal.repositories.AlunoRepository;
 import com.desafioFinal.DesafioFinal.repositories.ProfessorRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
