@@ -13,7 +13,7 @@ import io.swagger.v3.oas.annotations.security.SecurityScheme;
         info = @Info(
                 contact = @Contact(
                         name = "Denys",
-                        email = "testt@email.com",
+                        email = "ficticio@email.com",
                         url = "https://github.com/DenyWild"
                 ),
                 description = "OpenApi documentation for Spring Security",
