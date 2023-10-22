@@ -57,7 +57,7 @@ public class MarcacaoService {
     public MarcacaoResponse atualizarMarcacao(Long id, MarcacaoRequest request) {
 
         Marcacao marc = marcacaoRepository.findById(id).orElseThrow(() -> idNotFound(id));
-        BeanUtils.copyProperties(marc, request, "id");
+        BeanUtils.copyProperties(request, marc, "id");
         return mapper.map(marcacaoRepository.save(marc), MarcacaoResponse.class);
 
     }
@@ -67,12 +67,12 @@ public class MarcacaoService {
         return mapper.map(marc, MarcacaoResponse.class);
     }
 
-    public Page<MarcacaoResponse> listarTodasMarcacoes(PageRequest pageRequest) {
-        Page<Marcacao> page = marcacaoRepository.findAll(pageRequest);
+    public List<MarcacaoResponse> listarTodasMarcacoes() {
+        List<Marcacao> lista = marcacaoRepository.findAll();
 
-        List<MarcacaoResponse> list = page.getContent().stream().map(Marcacao -> mapper.map(Marcacao, MarcacaoResponse.class))
+        List<MarcacaoResponse> list = lista.stream().map(Marcacao -> mapper.map(Marcacao, MarcacaoResponse.class))
                 .collect(Collectors.toList());
-        return new PageImpl<>(list);
+        return list;
     }
 
     public void excluirMarcacao(Long id) {

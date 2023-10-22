@@ -1,16 +1,15 @@
 package com.desafioFinal.DesafioFinal.controllers;
 
-import com.desafioFinal.DesafioFinal.dtos.TagsProfessorRequest;
 import com.desafioFinal.DesafioFinal.dtos.TagsRequest;
 import com.desafioFinal.DesafioFinal.dtos.TagsResponse;
 import com.desafioFinal.DesafioFinal.services.TagsService;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/tags")
@@ -20,7 +19,7 @@ public class TagsController {
     private TagsService tagsService;
 
     @PostMapping
-    public ResponseEntity<TagsResponse> criarTag(@RequestBody @Valid TagsRequest request) {
+    public ResponseEntity<TagsResponse> criarTag(@RequestBody TagsRequest request) {
 
         TagsResponse response = tagsService.criarTag(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
@@ -28,9 +27,9 @@ public class TagsController {
     }
 
     @PostMapping("/vincular")
-    public ResponseEntity<TagsResponse> vincularTagAoProfessor(@RequestBody TagsProfessorRequest request) {
+    public ResponseEntity<TagsResponse> vincularTagAoProfessor(Long id_tag, Long id_professor) {
 
-        TagsResponse response = tagsService.vincularTagAoProfessor(request);
+        TagsResponse response = tagsService.vincularTagAoProfessor(id_tag, id_professor);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
 
     }
@@ -52,16 +51,9 @@ public class TagsController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<TagsResponse>> listarTodasTags(
-            @RequestParam(value = "page", defaultValue = "0") Integer page,
-            @RequestParam(value = "linesPerPage", defaultValue = "12") Integer linesPerPage,
-            @RequestParam(value = "direction", defaultValue = "ASC") String direction,
-            @RequestParam(value = "orderBy", defaultValue = "name") String orderBy) {
+    public ResponseEntity<List<TagsResponse>> listarTodasTags() {
 
-        PageRequest pageRequest = PageRequest.of(page, linesPerPage,
-                org.springframework.data.domain.Sort.Direction.valueOf(direction), orderBy);
-
-        Page<TagsResponse> list = tagsService.listarTodasTags(pageRequest);
+        List<TagsResponse> list = tagsService.listarTodasTags();
 
         return ResponseEntity.ok().body(list);
 

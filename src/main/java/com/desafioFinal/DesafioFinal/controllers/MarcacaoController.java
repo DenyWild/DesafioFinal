@@ -6,11 +6,11 @@ import com.desafioFinal.DesafioFinal.dtos.MarcacaoResponse;
 import com.desafioFinal.DesafioFinal.services.MarcacaoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/marcacao")
@@ -46,22 +46,14 @@ public class MarcacaoController {
     public ResponseEntity<MarcacaoResponse> buscarMarcacaoPorId(@PathVariable Long id) {
 
         MarcacaoResponse response = marcacaoService.buscarMarcacaoPorId(id);
-        return ResponseEntity.status(HttpStatus.FOUND).body(response);
+        return ResponseEntity.ok().body(response);
 
     }
 
     @GetMapping
-    public ResponseEntity<Page<MarcacaoResponse>> listarTodasMarcacoes(
-            @RequestParam(value = "page", defaultValue = "0") Integer page,
-            @RequestParam(value = "linesPerPage", defaultValue = "12") Integer linesPerPage,
-            @RequestParam(value = "direction", defaultValue = "ASC") String direction,
-            @RequestParam(value = "orderBy", defaultValue = "name") String orderBy) {
+    public ResponseEntity<List<MarcacaoResponse>> listarTodasMarcacoes() {
 
-
-        PageRequest pageRequest = PageRequest.of(page, linesPerPage,
-                org.springframework.data.domain.Sort.Direction.valueOf(direction), orderBy);
-
-        Page<MarcacaoResponse> list = marcacaoService.listarTodasMarcacoes(pageRequest);
+        List<MarcacaoResponse> list = marcacaoService.listarTodasMarcacoes();
 
         return ResponseEntity.ok().body(list);
 

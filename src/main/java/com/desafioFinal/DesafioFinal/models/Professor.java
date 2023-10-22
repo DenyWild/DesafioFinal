@@ -1,5 +1,6 @@
 package com.desafioFinal.DesafioFinal.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -10,13 +11,13 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 @Entity
-@Table(name = "professor")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Professor extends Usuario {
 
     @OneToMany(mappedBy="professor")
+    @JsonIgnore
     private List<Tags> tag;
 
 }

@@ -1,20 +1,20 @@
 package com.desafioFinal.DesafioFinal.dtos;
 
-import com.desafioFinal.DesafioFinal.models.Professor;
-import com.desafioFinal.DesafioFinal.models.enums.Nivel;
+import com.desafioFinal.DesafioFinal.models.Tags;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class TagsResponse {
+public class ProfessorResponse {
 
     private Long id;
-    private String descricao;
-    private Nivel nivel;
-    @JsonIgnore
-    private Professor professor;
+    private String nome;
+    private String email;
+    private List<Tags> tag;
 }

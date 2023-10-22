@@ -7,9 +7,9 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class TagsProfessorRequest {
+public class AlunoResponse {
 
-    private Long id_professor;
-    private Long id_tag;
-
+    private String nome;
+    private String email;
+    private String dificuldade;
 }
