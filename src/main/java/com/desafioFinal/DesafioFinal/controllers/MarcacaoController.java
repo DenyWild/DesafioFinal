@@ -1,6 +1,5 @@
 package com.desafioFinal.DesafioFinal.controllers;
 
-import com.desafioFinal.DesafioFinal.dtos.MarcacaoProfessorRequest;
 import com.desafioFinal.DesafioFinal.dtos.MarcacaoRequest;
 import com.desafioFinal.DesafioFinal.dtos.MarcacaoResponse;
 import com.desafioFinal.DesafioFinal.services.MarcacaoService;
@@ -36,9 +35,9 @@ public class MarcacaoController {
     }
 
     @PostMapping("/vincular")
-    public ResponseEntity<MarcacaoResponse> vincularMarcacaoAoProfessor(@RequestBody MarcacaoProfessorRequest request) {
+    public ResponseEntity<MarcacaoResponse> vincularMarcacaoAoProfessor(Long id_marcacao, Long id_professor) {
 
-        MarcacaoResponse response = marcacaoService.vincularMarcacaoAoProfessor(request);
+        MarcacaoResponse response = marcacaoService.vincularMarcacaoAoProfessor(id_marcacao, id_professor);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 

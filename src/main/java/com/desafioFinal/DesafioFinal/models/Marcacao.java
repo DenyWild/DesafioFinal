@@ -17,9 +17,9 @@ public class Marcacao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String descricao;
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Professor professor;
     private Date dataInicio;
     private Date dataTermino;
+    @ManyToOne
+    private Professor professor;
 
 }

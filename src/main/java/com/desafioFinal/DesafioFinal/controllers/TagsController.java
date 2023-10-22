@@ -46,7 +46,7 @@ public class TagsController {
     public ResponseEntity<TagsResponse> buscarTagPorId(@PathVariable Long id) {
 
         TagsResponse response = tagsService.buscarTagPorId(id);
-        return ResponseEntity.status(HttpStatus.FOUND).body(response);
+        return ResponseEntity.ok().body(response);
 
     }
 

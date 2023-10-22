@@ -1,6 +1,5 @@
 package com.desafioFinal.DesafioFinal.services;
 
-import com.desafioFinal.DesafioFinal.dtos.MarcacaoProfessorRequest;
 import com.desafioFinal.DesafioFinal.dtos.MarcacaoRequest;
 import com.desafioFinal.DesafioFinal.dtos.MarcacaoResponse;
 import com.desafioFinal.DesafioFinal.exceptions.ResourceNotFoundException;
@@ -11,9 +10,6 @@ import com.desafioFinal.DesafioFinal.repositories.ProfessorRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -42,15 +38,14 @@ public class MarcacaoService {
 
     }
 
-    public MarcacaoResponse vincularMarcacaoAoProfessor(MarcacaoProfessorRequest request) {
+    public MarcacaoResponse vincularMarcacaoAoProfessor(Long id_marcacao, Long id_professor) {
 
-        Long id_marcacao = request.getId_marcacao();
-        Long id_professor = request.getId_professor();
-
-        Marcacao marc = marcacaoRepository.findById(id_marcacao).orElseThrow(() -> idNotFound(id_marcacao));
         Professor prof = professorRepository.findById(id_professor).orElseThrow(() -> idNotFound(id_professor));
-        marc.setProfessor(prof);
-        return mapper.map(marcacaoRepository.save(marc), MarcacaoResponse.class);
+        Marcacao marca = marcacaoRepository.findById(id_marcacao).orElseThrow(() -> idNotFound(id_marcacao));
+
+        marca.setProfessor(prof);
+
+        return mapper.map(marcacaoRepository.save(marca), MarcacaoResponse.class);
 
     }
 
