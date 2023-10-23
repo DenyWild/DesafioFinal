@@ -3,7 +3,7 @@
 Este é um repositório no qual me propus a criar um Desafio do zero
 Apenas com ideias e pondo-as em prática
 
-Para utilizar de maneira correta é preciso que você tenha o PostgresSQL instaalado por este Link: https://www.postgresql.org/download/
+Para utilizar de maneira correta é preciso que você tenha o PostgresSQL instalado por este Link: https://www.postgresql.org/download/
 ou indo diretamente na fonte no seguinte link: https://www.enterprisedb.com/downloads/postgres-postgresql-downloads
 
 Ao instalar você pode configurar o seu username e password da maneira que se sentir melhor, lembrando que dependendo de como você configurar o seu Banco de dados você terá que modificar o application.properties da sua aplicação.
